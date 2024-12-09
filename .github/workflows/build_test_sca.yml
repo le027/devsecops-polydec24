@@ -1,0 +1,29 @@
+name: Build, Test, SCA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-sca:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run SCA with npm audit
+        run: npm audit --audit-level=high
