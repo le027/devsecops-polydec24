@@ -10,5 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4 
       - name: Bearer Action
-      - uses: Bearer/bearer-action@v2
+        uses: Bearer/bearer-action@v2
