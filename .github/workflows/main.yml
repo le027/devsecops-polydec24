@@ -1,0 +1,22 @@
+name: Hello World
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  echo-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Display hello_world.txt content
+        run: |
+          if [ -f hello_world.txt ]; then
+            cat hello_world.txt
+          else
+            echo "File hello_world.txt not found."
+          fi
