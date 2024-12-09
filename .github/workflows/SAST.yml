@@ -1,0 +1,26 @@
+name: SAST
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Bearer
+        run: |
+          curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/scripts/install.sh | sh
+          sudo mv ./bearer /usr/local/bin/
+
+      - name: Run SAST with Bearer
+        run: bearer scan --fail-on-policy-violation
+
+      - name: Fix vulnerabilities
+        if: failure()
+        run: echo "Manually fix findings reported by Bearer in the scan results."
