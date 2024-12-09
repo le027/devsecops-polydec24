@@ -26,4 +26,4 @@ jobs:
         run: npm test
 
       - name: Run SCA with npm audit
-        run: npm audit --audit-level=high
+        run: npm audit
